@@ -11,14 +11,12 @@ export default {};
 <style lang="scss" scoped>
 .RoundedButton {
   display: flex;
-  width: 42px;
-  height: 42px;
   align-items: center;
   justify-content: center;
-  margin: 20px;
   font-size: 2.5rem;
   transition: all 200ms ease;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
+  padding: var(--padding-md);
 
   &:active {
     background: var(--shadow-gray);
@@ -26,8 +24,6 @@ export default {};
 }
 
 .-primary {
-  width: 58px;
-  height: 58px;
   background-color: var(--background-primary);
   color: var(--color-white);
   box-shadow: 0 10px 20px var(--shadow-primary);

@@ -1,0 +1,16 @@
+:root {
+  --margin-sm: 0.5rem;
+
+  --radius-lg: 2.3rem;
+
+  --background-wrapper: white;
+
+  --color-white: white;
+
+  --background-primary: #f83b91;
+  --background-primary-dark: #DF3583;
+  --background-primary-light: #FA76B2;
+
+  --shadow-gray: #6663;
+  --shadow-primary: #f83b9188;
+}

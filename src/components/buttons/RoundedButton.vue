@@ -26,7 +26,7 @@ export default {};
 .-primary {
   background-color: var(--background-primary);
   color: var(--color-white);
-  box-shadow: 0 10px 20px var(--shadow-primary);
+  box-shadow: 0 5px 20px var(--shadow-primary);
 
   &:active {
     background: var(--background-primary-light);

@@ -1,35 +1,29 @@
 <template>
   <nav class="NavigationBar">
     <RoundedButton>
-      <FeedIcon class="Icon" />
+      <font-awesome-icon class="Icon -active" icon="home"></font-awesome-icon>
     </RoundedButton>
     <RoundedButton>
-      <SearchIcon class="Icon" />
+      <font-awesome-icon class="Icon" icon="search"></font-awesome-icon>
     </RoundedButton>
-    <RoundedButton class="-primary">
-      <PlusIcon class="PrimaryIcon" />
-    </RoundedButton>
-    <RoundedButton>
-      <ChatIcon class="Icon" />
+    <RoundedButton class="Button -primary">
+      <font-awesome-icon class="PrimaryIcon" icon="plus"></font-awesome-icon>
     </RoundedButton>
     <RoundedButton>
-      <ProfileIcon class="Icon" />
+      <font-awesome-icon class="Icon" icon="heart"></font-awesome-icon>
+    </RoundedButton>
+    <RoundedButton>
+      <font-awesome-icon class="Icon" icon="user"></font-awesome-icon>
     </RoundedButton>
   </nav>
 </template>
 
 <script>
-import { FeedIcon, SearchIcon, PlusIcon, ChatIcon, ProfileIcon } from "./icons";
 import RoundedButton from "./buttons/RoundedButton";
 
 export default {
   name: "NavigationBar",
   components: {
-    FeedIcon,
-    SearchIcon,
-    PlusIcon,
-    ChatIcon,
-    ProfileIcon,
     RoundedButton
   }
 };
@@ -41,9 +35,10 @@ export default {
   box-sizing: border-box;
   grid-template-columns: repeat(5, 1fr);
   gap: var(--gap-sm);
-  padding: var(--padding-md);
+  padding: 0 var(--padding-sm);
   place-items: center;
   position: fixed;
+  z-index: 100;
   bottom: 0;
   width: 100%;
   background-color: var(--background-wrapper);
@@ -51,12 +46,21 @@ export default {
   box-shadow: 0 0 32px var(--shadow-gray);
 }
 
+.Button.-primary {
+  position: relative;
+  bottom: 0.75rem;
+}
+
 .Icon {
   width: 1.5rem;
   height: 1.5rem;
+  color: gray;
+  &.-active {
+    color: unset;
+  }
 }
 .PrimaryIcon {
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2rem;
+  height: 2rem;
 }
 </style>

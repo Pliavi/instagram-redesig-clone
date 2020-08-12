@@ -6,31 +6,57 @@
         <img class="UserPhoto__image" src="https://placekitten.com/64/64" />
       </div>
       <div class="ProfileLine__user-info">
-        <div class="ProfileLine__name">Vitor Silvério</div>
-        <div class="ProfileLine__location">Caraguatatuba</div>
+        <div class="ProfileLine__name">{{ metadata.user }}</div>
+        <div class="ProfileLine__location">{{ metadata.location }}</div>
       </div>
     </div>
 
-    <div class="ShowCase">
-      <Photo :src="photos.pop()" />
-      <div v-if="photos.length > 2" class="ShowCase__more-photos">
-        <Photo v-for="(photo, index) in photos" :src="photo" :key="index" />
+    <swiper class="MySwiper" ref="mySwiper" :options="swiperOptions">
+      <swiper-slide v-for="(photo, index) in photos" :key="index">
+        <Photo :src="photo" />
+      </swiper-slide>
+      <slot class="swiper-pagination" slot="pagination"></slot>
+    </swiper>
+
+    <div class="ActionBox">
+      <div class="Action">
+        <font-awesome-icon class="Action__icon" :icon="['far', 'heart']" />
+        <span>{{ metadata.counters.likes }}</span>
+      </div>
+
+      <div class="Action">
+        <font-awesome-icon class="Action__icon" :icon="['far', 'comment']" />
+        <span>{{ metadata.counters.comments }}</span>
+      </div>
+
+      <div class="Action">
+        <font-awesome-icon
+          class="Action__icon"
+          :icon="['far', 'share-square']"
+        />
+        <span>{{ metadata.counters.shares }}</span>
+      </div>
+
+      <div class="Action">
+        <font-awesome-icon class="Action__icon" :icon="['far', 'bookmark']" />
       </div>
     </div>
 
-    <div class="Actions">
-      <div>
-        <font-awesome-icon icon="far fa-heart"></font-awesome-icon>
-      </div>
-      <div>
-        <font-awesome-icon icon="far fa-comment"></font-awesome-icon>
-      </div>
-      <div>
-        <font-awesome-icon icon="far fa-share-square"></font-awesome-icon>
-      </div>
-      <div>
-        <font-awesome-icon icon="far fa-bookmark"></font-awesome-icon>
-      </div>
+    <div
+      class="Subtitle"
+      :class="{ '-trucated': truncatedSubtitle }"
+      @click="truncatedSubtitle = false"
+    >
+      <a :href="metadata.user" class="Subtitle__user-nick">{{
+        metadata.user
+      }}</a>
+      &nbsp;
+      <span class="Subtitle__text">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim quam
+        quia, soluta debitis magnam blanditiis odit voluptates non nobis rem
+        necessitatibus iure! Quam culpa sint temporibus natus consequuntur nisi
+        earum.
+      </span>
     </div>
   </div>
 </template>
@@ -39,7 +65,18 @@
 import Photo from "@/components/Photo";
 
 export default {
-  props: ["photos"],
+  props: ["metadata", "photos"],
+  data() {
+    return {
+      truncatedSubtitle: true,
+      swiperOptions: {
+        spaceBetween: 30,
+        pagination: {
+          el: ".swiper-pagination"
+        }
+      }
+    };
+  },
   components: { Photo }
 };
 </script>
@@ -47,6 +84,7 @@ export default {
 <style lang="scss" scoped>
 .PostCard {
   padding: var(--padding-md);
+  overflow: hidden;
 }
 .ProfileLine {
   display: flex;
@@ -70,6 +108,55 @@ export default {
     width: 42px;
     height: 42px;
     border-radius: var(--radius-full);
+  }
+}
+
+.MySwiper {
+  overflow: visible;
+}
+
+.ActionBox {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  margin: var(--margin-md) 0;
+}
+
+.Action {
+  margin: 0 var(--margin-sm);
+  &__icon {
+    width: 20px;
+    height: 20px;
+  }
+  &:last-child {
+    margin-left: auto;
+  }
+
+  &:not(:last-child) &__icon {
+    margin-right: var(--margin-sm);
+  }
+}
+
+.Subtitle {
+  display: -webkit-box;
+  box-sizing: border-box;
+  text-align: left;
+  padding: 0 var(--padding-md);
+  border-radius: var(--radius-md);
+  &.-trucated {
+    overflow-y: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  &__user-nick {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--link-color);
+  }
+
+  &:active {
+    background-color: #f1f1f1;
   }
 }
 </style>

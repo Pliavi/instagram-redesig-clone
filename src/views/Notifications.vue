@@ -2,7 +2,7 @@
   <div>
     <HeaderBar>
       <template v-slot:left>
-        <RoundedButton class="BackButton">
+        <RoundedButton tag="router-link" to="/" class="BackButton">
           <font-awesome-icon
             class="Action__icon"
             :icon="['fas', 'chevron-left']"
@@ -23,14 +23,23 @@
           <img src="https://placekitten.com/48/48" />
         </div>
 
-        <div class="Notification__info">
+        <div v-if="notification.type === 'comment'" class="Notification__info">
           <div class="Notification__user-name">
             {{ notification.commented_by }}
           </div>
           <div class="Notification__legend">Comentou no seu post</div>
           <p class="Notification__comment">"{{ notification.comment }}"</p>
           <div class="Notification__date">
-            {{ notification.date | relativeDate }}
+            {{ notification.date | readableRelativeDate }}
+          </div>
+        </div>
+
+        <div v-if="notification.type === 'like'" class="Notification__info">
+          <div class="Notification__legend">
+            {{ notification.liked_by | notificationWhoLikedLegend }}
+          </div>
+          <div class="Notification__date">
+            {{ notification.date | readableRelativeDate }}
           </div>
         </div>
 
@@ -45,8 +54,10 @@
 <script>
 import HeaderBar from "@/components/HeaderBar";
 import RoundedButton from "@/components/buttons/RoundedButton";
+import { readableRelativeDate } from "@/utils/date";
 
 export default {
+  name: "Notifications",
   components: { HeaderBar, RoundedButton },
   data() {
     return {
@@ -58,45 +69,30 @@ export default {
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quia suscipit laboriosam modi non, facilis accusantium.",
           date: "2020-08-13T15:49:26+00:00",
           thumb: "https://placekitten.com/48/48"
+        },
+        {
+          type: "like",
+          liked_by: ["pliavi", "jhon_doe"],
+          date: "2020-08-13T15:49:26+00:00",
+          thumb: "https://placekitten.com/48/48"
+        },
+        {
+          type: "like",
+          liked_by: ["jhon_doe"],
+          date: "2020-08-13T15:49:26+00:00",
+          thumb: "https://placekitten.com/48/48"
         }
       ]
     };
   },
   filters: {
-    relativeDate(dateString) {
-      const date = Date.parse(dateString);
-      const currentDate = new Date();
-      const timeDistance = (currentDate - date) / 1000;
-      const relativeTimeConfig = (() => {
-        const convertTo = (seconds, to) =>
-          seconds /
-          {
-            week: 604800,
-            day: 86400,
-            hour: 3600,
-            minute: 60
-          }[to];
+    readableRelativeDate,
+    notificationWhoLikedLegend(likedBy) {
+      const firstWhoLiked = likedBy[0];
 
-        const weeks = convertTo(timeDistance, "week");
-        if (weeks > 1) return [Math.floor(weeks), "week"];
-
-        const days = convertTo(timeDistance, "day");
-        if (days > 1) return [Math.floor(days), "day"];
-
-        const hours = convertTo(timeDistance, "hour");
-        if (hours > 1) return [Math.floor(hours), "hour"];
-
-        const minutes = convertTo(timeDistance, "minute");
-        if (minutes > 1) return [Math.floor(minutes), "minute"];
-
-        return [Math.floor(timeDistance) * -1, "second"];
-      })();
-
-      const formatter = new Intl.RelativeTimeFormat("pt-BR", {
-        numeric: "auto",
-        style: "narrow"
-      });
-      return formatter.format(...relativeTimeConfig);
+      return likedBy.length > 1
+        ? `${firstWhoLiked} e outras pessoas curtiram sua publicação`
+        : `${firstWhoLiked} curtiu sua publicação`;
     }
   }
 };
@@ -131,6 +127,8 @@ export default {
     height: 48px;
   }
   &__info {
+    display: flex;
+    flex-direction: column;
     flex: 1;
     margin: 0 var(--margin-md);
   }
@@ -139,7 +137,7 @@ export default {
     font-weight: bold;
   }
   &__legend {
-    color: var(--text-lighter);
+    color: var(--text-light);
     font-size: var(--text-sm);
   }
   &__comment {
@@ -154,6 +152,7 @@ export default {
     font-size: var(--text-xs);
     font-weight: bold;
     color: var(--text-lighter);
+    margin-top: auto;
   }
   &__thumb {
     width: 48px;

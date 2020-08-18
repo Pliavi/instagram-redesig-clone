@@ -3,15 +3,34 @@ import "./plugins/fontawesome";
 import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
-import "normalize.css";
-import "./assets/global.scss";
-import VueAwesomeSwiper from "vue-awesome-swiper";
-import "swiper/swiper-bundle.css";
 
-Vue.use(VueAwesomeSwiper /* { default options with global component } */);
+/* Styles */
+import "normalize.css";
+// add styles under
+import "swiper/swiper-bundle.min.css";
+// add styles above
+import "./assets/variables.scss";
+import "./assets/global.scss";
+
+/* Plugins */
+//#region Swiper
+import {
+  Swiper as SwiperClass,
+  Pagination,
+  Navigation,
+  Mousewheel,
+  Autoplay
+} from "swiper/swiper.esm";
+import getAwesomeSwiper from "vue-awesome-swiper/dist/exporter";
+
+SwiperClass.use([Pagination, Mousewheel, Navigation, Autoplay]);
+Vue.use(getAwesomeSwiper(SwiperClass));
+const { Swiper, SwiperSlide } = getAwesomeSwiper(SwiperClass);
+//#endregion
 
 Vue.config.productionTip = false;
 new Vue({
   router,
+  components: { Swiper, SwiperSlide },
   render: h => h(App)
 }).$mount("#app");

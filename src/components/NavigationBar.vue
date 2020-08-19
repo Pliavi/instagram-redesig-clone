@@ -1,18 +1,18 @@
 <template>
   <nav class="NavigationBar">
-    <RoundedButton>
-      <font-awesome-icon class="Icon -active" icon="home"></font-awesome-icon>
+    <RoundedButton tag="router-link" to="/">
+      <font-awesome-icon class="Icon" icon="home"></font-awesome-icon>
     </RoundedButton>
-    <RoundedButton>
+    <RoundedButton tag="router-link" to="/#search">
       <font-awesome-icon class="Icon" icon="search"></font-awesome-icon>
     </RoundedButton>
     <RoundedButton class="Button -primary">
       <font-awesome-icon class="PrimaryIcon" icon="plus"></font-awesome-icon>
     </RoundedButton>
-    <RoundedButton>
+    <RoundedButton tag="router-link" to="/notifications">
       <font-awesome-icon class="Icon" icon="heart"></font-awesome-icon>
     </RoundedButton>
-    <RoundedButton>
+    <RoundedButton tag="router-link" to="/#user">
       <font-awesome-icon class="Icon" icon="user"></font-awesome-icon>
     </RoundedButton>
   </nav>

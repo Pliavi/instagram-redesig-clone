@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <HeaderBar />
     <router-view />
     <NavigationBar />
   </div>
@@ -8,10 +7,9 @@
 
 <script>
 import NavigationBar from "./components/NavigationBar";
-import HeaderBar from "./components/HeaderBar";
 
 export default {
-  components: { HeaderBar, NavigationBar }
+  components: { NavigationBar }
 };
 </script>
 

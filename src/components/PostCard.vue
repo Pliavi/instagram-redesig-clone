@@ -11,11 +11,15 @@
       </div>
     </div>
 
-    <swiper class="MySwiper" ref="mySwiper" :options="swiperOptions">
+    <Photo v-if="photos.length === 1" :src="photos[0]" />
+    <swiper v-else class="MySwiper" ref="mySwiper" :options="swiperOptions">
       <swiper-slide v-for="(photo, index) in photos" :key="index">
         <Photo :src="photo" />
       </swiper-slide>
-      <slot class="swiper-pagination" slot="pagination"></slot>
+      <div class="swiper-pagination" slot="pagination"></div>
+
+      <div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div>
     </swiper>
 
     <div class="ActionBox">
@@ -73,6 +77,10 @@ export default {
         spaceBetween: 30,
         pagination: {
           el: ".swiper-pagination"
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev"
         }
       }
     };
@@ -109,10 +117,6 @@ export default {
     height: 42px;
     border-radius: var(--radius-full);
   }
-}
-
-.MySwiper {
-  overflow: visible;
 }
 
 .ActionBox {
@@ -157,6 +161,15 @@ export default {
 
   &:active {
     background-color: #f1f1f1;
+  }
+}
+
+.MySwiper {
+  overflow: visible;
+  .swiper-pagination {
+    position: relative;
+    bottom: 0;
+    z-index: 10;
   }
 }
 </style>

@@ -1,33 +1,10 @@
 <template>
   <div>
-    <div v-if="pageLoading" class="Loading">
-      <img src="@/assets/logo.png" />
-    </div>
-    <div v-show="!pageLoading">
-      <HeaderBar>
-        <img class="HeaderBar__logo" src="@/assets/logo.png" />
-      </HeaderBar>
+    <HeaderBar>
+      <div class="HeaderBar__logo">SomePhotos</div>
+    </HeaderBar>
 
-      <PostCard
-        :metadata="defaultMetadata"
-        :photos="[
-          'https://picsum.photos/640/360',
-          'https://picsum.photos/641/361',
-          'https://picsum.photos/642/362'
-        ]"
-      />
-      <PostCard
-        :metadata="defaultMetadata"
-        :photos="[
-          'https://picsum.photos/643/363',
-          'https://picsum.photos/644/364'
-        ]"
-      />
-      <PostCard
-        :metadata="defaultMetadata"
-        :photos="['https://picsum.photos/645/365']"
-      />
-    </div>
+    <PostCard v-for="(post, index) in posts" :postData="post" :key="index" />
   </div>
 </template>
 
@@ -46,7 +23,9 @@
 }
 .HeaderBar {
   &__logo {
-    margin: auto;
+    font-family: "Satisfy", cursive;
+    font-size: 1.65rem;
+    margin: 0 auto;
   }
 }
 </style>
@@ -59,29 +38,13 @@ export default {
   name: "Home",
   data() {
     return {
-      pageLoading: true,
-      defaultMetadata: {
-        user: "pliavi",
-        location: "Caraguatatuba",
-        counters: {
-          likes: Math.floor(Math.random() * 999),
-          comments: Math.floor(Math.random() * 999),
-          shares: Math.floor(Math.random() * 999)
-        }
-      }
+      posts: []
     };
   },
   beforeMount() {
-    if (document.readyState == "complete") {
-      this.pageLoading = false;
-      return;
-    }
-
-    document.onreadystatechange = () => {
-      if (document.readyState == "complete") {
-        this.pageLoading = false;
-      }
-    };
+    fetch("/data/posts.json")
+      .then(res => res.json())
+      .then(posts => (this.posts = posts));
   },
   components: { PostCard, HeaderBar }
 };

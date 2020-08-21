@@ -1,14 +1,24 @@
 <template>
-  <div class="Photo">
+  <div class="Photo" :class="{ '-loading': loading }">
     <img class="Photo__image -blured" :src="src" draggable="false" />
-    <img class="Photo__image" :src="src" draggable="false" />
+    <img
+      class="Photo__image"
+      :src="src"
+      draggable="false"
+      @load="loading = false"
+    />
   </div>
 </template>
 
 <script>
 export default {
   name: "Photo",
-  props: ["src"]
+  props: ["src"],
+  data() {
+    return {
+      loading: true
+    };
+  }
 };
 </script>
 
@@ -17,6 +27,11 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
+
+  &.-loading {
+    min-height: 56vw; /* 16:9 aspect ratio from 100vw */
+    border-radius: var(--radius-md);
+  }
 
   &__image {
     border-radius: var(--radius-md);

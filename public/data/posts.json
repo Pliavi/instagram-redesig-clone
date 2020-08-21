@@ -1,0 +1,39 @@
+[{
+  "user": "pliavi",
+  "location": "Caraguatatuba",
+  "counters": {
+    "likes": 12,
+    "comments": 4,
+    "shares": 2
+  },
+  "photos": [
+    "https://picsum.photos/640/360",
+    "https://picsum.photos/641/361",
+    "https://picsum.photos/642/362"
+  ]
+},
+{
+  "user": "ciclana",
+  "location": "São José dos Campos",
+  "counters": {
+    "likes": 52,
+    "comments": 26,
+    "shares": 12
+  },
+  "photos": [
+    "https://picsum.photos/643/363",
+    "https://picsum.photos/644/364"
+  ]
+},
+{
+  "user": "fulano",
+  "location": "São Paulo",
+  "counters": {
+    "likes": 2,
+    "comments": 4,
+    "shares": 0
+  },
+  "photos": [
+    "https://picsum.photos/645/365"
+  ]
+}]

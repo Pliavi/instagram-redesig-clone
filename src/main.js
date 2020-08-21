@@ -5,9 +5,6 @@ import router from "./router";
 
 /* Styles */
 import "normalize.css";
-// add styles under
-import "swiper/swiper-bundle.min.css";
-// add styles above
 import "./assets/variables.scss";
 import "./assets/global.scss";
 

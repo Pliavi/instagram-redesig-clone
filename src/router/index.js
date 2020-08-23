@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Notifications from "../views/Notifications.vue";
+import NotFound from "../views/NotFound.vue";
 
 Vue.use(VueRouter);
 
@@ -14,15 +14,16 @@ const routes = [
   {
     path: "/notifications",
     name: "Notifications",
-    component: Notifications
-  }
+    component: () => import("../views/Notifications.vue")
+  },
+  { path: "/404", component: NotFound },
+  { path: "*", redirect: "/404" }
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes,
+  routes
 });
-
 
 export default router;

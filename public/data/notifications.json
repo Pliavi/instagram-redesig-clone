@@ -1,0 +1,36 @@
+[
+  {
+    "type": "comment",
+    "commented_by": "pliavi",
+    "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quia suscipit laboriosam modi non, facilis accusantium.",
+    "date": "2020-08-13T15:49:26+00:00",
+    "thumb": "https://placekitten.com/48/48"
+  },
+  {
+    "type": "like",
+    "liked_by": [
+      "jhon_doe",
+      "ciclana",
+      "pliavi"
+    ],
+    "date": "2020-08-13T15:49:26+00:00",
+    "thumb": "https://placekitten.com/48/48"
+  },
+  {
+    "type": "like",
+    "liked_by": [
+      "fulano",
+      "beltrano"
+    ],
+    "date": "2020-08-13T15:49:26+00:00",
+    "thumb": "https://placekitten.com/48/48"
+  },
+  {
+    "type": "like",
+    "liked_by": [
+      "jhon_doe"
+    ],
+    "date": "2020-08-13T15:49:26+00:00",
+    "thumb": "https://placekitten.com/48/48"
+  }
+]

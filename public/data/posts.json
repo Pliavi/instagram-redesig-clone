@@ -1,39 +1,43 @@
-[{
-  "user": "pliavi",
-  "location": "Caraguatatuba",
-  "counters": {
-    "likes": 12,
-    "comments": 4,
-    "shares": 2
+[
+  {
+    "user": {"name": "pliavi", "photo": "https://placekitten.com/64/64"},
+    "location": "São José dos Campos",
+    "counters": {
+      "likes": 12,
+      "comments": 4,
+      "shares": 2
+    },
+    "photos": [
+      "https://picsum.photos/640/360",
+      "https://picsum.photos/641/361",
+      "https://picsum.photos/642/362"
+    ],
+    "caption": "That's some photos about something I did yesterday.\n\n...and today too!\n\n#happy #something #random"
   },
-  "photos": [
-    "https://picsum.photos/640/360",
-    "https://picsum.photos/641/361",
-    "https://picsum.photos/642/362"
-  ]
-},
-{
-  "user": "ciclana",
-  "location": "São José dos Campos",
-  "counters": {
-    "likes": 52,
-    "comments": 26,
-    "shares": 12
+  {
+    "user": {"name": "ciclana", "photo": "https://placekitten.com/65/65"},
+    "counters": {
+      "likes": 52,
+      "comments": 26,
+      "shares": 12
+    },
+    "photos": [
+      "https://picsum.photos/643/363",
+      "https://picsum.photos/644/364"
+    ],
+    "caption": "Just something random..."
   },
-  "photos": [
-    "https://picsum.photos/643/363",
-    "https://picsum.photos/644/364"
-  ]
-},
-{
-  "user": "fulano",
-  "location": "São Paulo",
-  "counters": {
-    "likes": 2,
-    "comments": 4,
-    "shares": 0
-  },
-  "photos": [
-    "https://picsum.photos/645/365"
-  ]
-}]
+  {
+    "user": {"name": "fulano", "photo": "https://placekitten.com/66/66"},
+    "location": "São Paulo",
+    "counters": {
+      "likes": 2,
+      "comments": 4,
+      "shares": 0
+    },
+    "photos": [
+      "https://picsum.photos/645/365"
+    ],
+    "caption": "Wow, that looked amazing I couldn't go home without take a shot!\nbecause this is awesome!\n\n#happy #something #random"
+  }
+]

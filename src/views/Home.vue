@@ -1,38 +1,17 @@
 <template>
   <div>
-    <HeaderBar>
-      <div class="HeaderBar__logo">SomePhotos</div>
-    </HeaderBar>
+    <header-bar>
+      <app-logo />
+    </header-bar>
 
-    <PostCard v-for="(post, index) in posts" :postData="post" :key="index" />
+    <PostCard v-for="(post, index) in posts" :post-data="post" :key="index" />
   </div>
 </template>
-
-<style lang="scss" scoped>
-.Loading {
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-.HeaderBar {
-  &__logo {
-    font-family: "Satisfy", cursive;
-    font-size: 1.65rem;
-    margin: 0 auto;
-  }
-}
-</style>
 
 <script>
 import PostCard from "@/components/PostCard";
 import HeaderBar from "@/components/HeaderBar";
+import AppLogo from "@/components/AppLogo";
 
 export default {
   name: "Home",
@@ -46,6 +25,6 @@ export default {
       .then(res => res.json())
       .then(posts => (this.posts = posts));
   },
-  components: { PostCard, HeaderBar }
+  components: { PostCard, HeaderBar, AppLogo }
 };
 </script>

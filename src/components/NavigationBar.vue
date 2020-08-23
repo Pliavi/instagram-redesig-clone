@@ -1,66 +1,58 @@
 <template>
-  <nav class="NavigationBar">
-    <RoundedButton tag="router-link" to="/">
-      <font-awesome-icon class="Icon" icon="home"></font-awesome-icon>
-    </RoundedButton>
-    <RoundedButton tag="router-link" to="/#search">
-      <font-awesome-icon class="Icon" icon="search"></font-awesome-icon>
-    </RoundedButton>
-    <RoundedButton class="Button -primary">
-      <font-awesome-icon class="PrimaryIcon" icon="plus"></font-awesome-icon>
-    </RoundedButton>
-    <RoundedButton tag="router-link" to="/notifications">
-      <font-awesome-icon class="Icon" icon="heart"></font-awesome-icon>
-    </RoundedButton>
-    <RoundedButton tag="router-link" to="/#user">
-      <font-awesome-icon class="Icon" icon="user"></font-awesome-icon>
-    </RoundedButton>
+  <nav
+    class="fixed bottom-0 z-30 grid w-full h-12 grid-cols-5 bg-white shadow-top-md rounded-t-xl navigation-bar"
+  >
+    <nav-button to="/">
+      <font-awesome-icon class="Icon" size="lg" icon="home"></font-awesome-icon>
+    </nav-button>
+    <nav-button to="/#search">
+      <font-awesome-icon
+        class="Icon"
+        size="lg"
+        icon="search"
+      ></font-awesome-icon>
+    </nav-button>
+    <nav-button
+      to="/#upload"
+      variant="primary"
+      class="flex items-center justify-center w-12 h-12 mb-3 -mt-3 shadow-lg-primary"
+    >
+      <font-awesome-icon
+        class="PrimaryIcon"
+        size="lg"
+        icon="plus"
+      ></font-awesome-icon>
+    </nav-button>
+    <nav-button to="/notifications">
+      <font-awesome-icon
+        class="Icon"
+        size="lg"
+        icon="heart"
+      ></font-awesome-icon>
+    </nav-button>
+    <nav-button to="/#user">
+      <font-awesome-icon class="Icon" size="lg" icon="user"></font-awesome-icon>
+    </nav-button>
   </nav>
 </template>
 
 <script>
-import RoundedButton from "./buttons/RoundedButton";
+import NavButton from "./buttons/NavButton";
 
 export default {
   name: "NavigationBar",
   components: {
-    RoundedButton
+    NavButton
   }
 };
 </script>
 
-<style lang="scss" scoped>
-.NavigationBar {
-  display: grid;
-  box-sizing: border-box;
-  grid-template-columns: repeat(5, 1fr);
-  gap: var(--gap-sm);
-  padding: 0 var(--padding-sm);
-  place-items: center;
-  position: fixed;
-  z-index: 100;
-  bottom: 0;
-  width: 100%;
-  background-color: var(--background-wrapper);
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
-  box-shadow: 0 0 32px var(--shadow-gray);
+<style>
+.navigation-bar {
+  justify-items: center;
 }
 
-.Button.-primary {
-  position: relative;
-  bottom: 0.75rem;
-}
-
-.Icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  color: gray;
-  &.-active {
-    color: unset;
-  }
-}
-.PrimaryIcon {
-  width: 2rem;
-  height: 2rem;
+.shadow-lg-primary {
+  box-shadow: 0 8px 15px -3px #e91e63aa, 0 4px 6px -2px #e91e6388;
 }
 </style>

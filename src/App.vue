@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" class="mt-12 mb-16">
     <router-view />
-    <NavigationBar />
+    <navigation-bar />
   </div>
 </template>
 
@@ -12,10 +12,3 @@ export default {
   components: { NavigationBar }
 };
 </script>
-
-<style lang="scss">
-#app {
-  margin-bottom: 72px; /* It's the navigation height */
-  margin-top: 52px; /* It's the header height */
-}
-</style>

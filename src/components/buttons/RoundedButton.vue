@@ -1,12 +1,15 @@
 <template>
   <component
     :is="tag"
-    v-bind="$attrs"
-    class="RoundedButton"
-    active-class="-active"
-    exact-active-class="-exact-active"
+    class="flex items-center content-center transition-colors rounded-full"
+    :class="{
+      'bg-pink-500 text-white': variant === 'primary',
+
+      'bg-transparent text-gray-500': !variant && !isActive,
+      'bg-transparent text-gray-700': !variant && isActive
+    }"
   >
-    <slot></slot>
+    <slot />
   </component>
 </template>
 
@@ -16,42 +19,9 @@ export default {
     tag: {
       type: String,
       default: "button"
-    }
+    },
+    variant: String,
+    isActive: Boolean
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.RoundedButton {
-  display: flex;
-  box-sizing: border-box;
-  border: 0;
-  background: transparent;
-  align-items: center;
-  justify-content: center;
-  font-size: 100%;
-  transition: all 200ms ease;
-  border-radius: var(--radius-full);
-  padding: var(--padding-md);
-  color: var(--text-light);
-
-  &:active {
-    background: var(--shadow-gray);
-    color: var(--text-color);
-  }
-}
-
-.RoundedButton.-exact-active ::v-deep > * {
-  color: var(--text-color);
-}
-
-.-primary {
-  background-color: var(--background-primary);
-  color: var(--color-white);
-  box-shadow: 0 5px 20px var(--shadow-primary);
-
-  &:active {
-    background: var(--background-primary-light);
-  }
-}
-</style>

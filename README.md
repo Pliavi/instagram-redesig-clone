@@ -1,29 +1,17 @@
-# newinsta
+# SomePhotos
+## A Instagram clone based on redesigns, made with Vue2, Swiper and Tailwindcss
 
-## Project setup
+The redesign images used as base to this project:
+ - [Insta redesign by Rafał Staromłyński at Dribbble](https://dribbble.com/shots/6375793-Insta-redesign)
+ - [Instagram Redesign UI KIT by Innovation Graphics](https://www.uplabs.com/posts/instagram-redesign-project#)
+
+<img align="center" src="./docs/example.gif">
+
+---
+
+## Run project
+This project is made with Vue cli, so, it uses their commands to serve a project?
 ```
 yarn install
-```
-
-### Compiles and hot-reloads for development
-```
 yarn serve
 ```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Run your end-to-end tests
-```
-yarn test:e2e
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
